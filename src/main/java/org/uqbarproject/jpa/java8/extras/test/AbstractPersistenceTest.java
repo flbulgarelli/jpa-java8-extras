@@ -9,12 +9,12 @@ public abstract class AbstractPersistenceTest implements
 		TransactionalOps, EntityManagerOps {
 
 	@Before
-	public void setup() {
+	public void setupPersistence() {
 		beginTransaction();
 	}
 
 	@After
-	public void tearDown() {
+	public void tearDownPersistence() {
 		rollbackTransaction();
 	}
 
