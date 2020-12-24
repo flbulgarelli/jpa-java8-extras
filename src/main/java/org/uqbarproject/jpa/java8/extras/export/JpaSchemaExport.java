@@ -8,14 +8,24 @@ import org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 /**
- * Tool for exporting JPA schema. This class depends on Hibernate classes.
+ * Tool for exporting JPA schema. This class depends on Hibernate classes
+ * Run it as <code>DB_NAME SCHEMA_FILE [CREATE] [FORAMAT]</code>.
  * 
- * Run with args: <code>db schema.sql true true</code>
+ * Examples: 
+ * 
+ * <code>
+ * <pre>
+ * db schema.sql
+ * db schema.sql true true
+ * </pre>
+ * </code>
  */
 public class JpaSchemaExport {
 
    public static void main(String[] args) throws Exception {
-      execute(args[0], args[1], Boolean.parseBoolean(args[2]), Boolean.parseBoolean(args[3]));
+     boolean create =  args.length >= 3 ? Boolean.parseBoolean(args[2]) : true;
+     boolean format =  args.length == 4 ? Boolean.parseBoolean(args[3]) : true;
+     execute(args[0], args[1], create, format);
    }
 
    public static void execute(String unused, String destination, boolean create, boolean format)
